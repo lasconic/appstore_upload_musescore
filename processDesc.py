@@ -15,6 +15,7 @@ def extractDescription(language, os, appName):
 
     inFree = False
     inAndroid = False
+    inIOS = False
 
     inTitle = False
     inShortDescription = False
@@ -50,8 +51,13 @@ def extractDescription(language, os, appName):
         if line.startswith("--"):
             if line.startswith("-- Android"):
                 inAndroid = not inAndroid
+            if line.startswith("-- iOS"):
+                inIOS = not inIOS
             continue
+
         if inAndroid and os != "android":
+            continue
+        if inIOS and os != "ios":
             continue
         if inTitle:
             title += line
@@ -146,8 +152,8 @@ for appName in appNames:
         languagesAppStore = languages[language]
         for languageAppStore in languagesAppStore:
             info = extractDescription(language, os, appName)
-            if (os == "android"):
-                changeDescriptionAndroid(appName, languageAppStore, info['title'], info['shortDescription'], info['description'])
-            else:
-                sendDescriptionToDeliver(appName, languageAppStore, info['title'], info['shortDescription'], info['description'], info['whatsNew'])
+            #if (os == "android"):
+            #    changeDescriptionAndroid(appName, languageAppStore, info['title'], info['shortDescription'], info['description'])
+            #else:
+            #    sendDescriptionToDeliver(appName, languageAppStore, info['title'], info['shortDescription'], info['description'], info['whatsNew'])
 
