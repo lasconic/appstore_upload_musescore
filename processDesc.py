@@ -152,8 +152,8 @@ for appName in appNames:
         languagesAppStore = languages[language]
         for languageAppStore in languagesAppStore:
             info = extractDescription(language, os, appName)
-            #if (os == "android"):
-            #    changeDescriptionAndroid(appName, languageAppStore, info['title'], info['shortDescription'], info['description'])
-            #else:
-            #    sendDescriptionToDeliver(appName, languageAppStore, info['title'], info['shortDescription'], info['description'], info['whatsNew'])
+            if (os == "android"):
+                changeDescriptionAndroid(appName, languageAppStore, info['title'], info['shortDescription'], info['description'])
+            else:
+                sendDescriptionToDeliver(appName, languageAppStore, info['title'], info['shortDescription'], info['description'], info['whatsNew'])
 
